@@ -1,0 +1,47 @@
+from gpiozero import DistanceSensor as distsense
+from time import sleep
+
+
+def status_change():
+    print("Status changed")
+
+
+if __name__ =="__main__":
+    sensor = distsense(trigger = 18, echo = 24)
+    dis_vec = [False, False, False, False, False, False]
+    status = 0 #True means occupied 
+
+    while True:
+        sleep(2)
+        distance = round((sensor.distance*100),2)
+        print ("Distance: {}cm ".format(distance), end = ' ')
+        check = sum(dis_vec)
+        if (check == 6) or (check == 0):
+            status_change()
+
+
+
+
+        """if(distance<60):
+            occupied()
+        else: unoccupied()"""
+        """dis_vec.append(distance)
+        dis_vec.pop(0)
+        dis_vec.sort()
+        diff=dis_vec[-1]-dis_vec[0]
+        if diff < 10 and distance<95:
+            status = True
+            status_change()"""
+
+
+
+
+        
+
+
+
+        
+        
+
+        
+    
