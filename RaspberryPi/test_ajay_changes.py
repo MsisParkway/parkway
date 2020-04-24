@@ -25,7 +25,7 @@ if __name__ =="__main__":
         	print("Change status to occupied")
 
         if sum(dis_vec)==1 and distance>99:
-        	print("Change status to occupied")
+        	print("Change status to unoccupied")
 
         if distance <99 :
             dis_vec.append(True)
