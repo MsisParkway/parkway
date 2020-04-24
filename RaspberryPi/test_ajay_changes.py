@@ -19,13 +19,13 @@ if __name__ =="__main__":
     while True:
         sleep(2)
         distance = round((sensor.distance*100),2)
-        #print ("Distance: {}cm ".format(distance), end = ' ')
+        print ("Distance: {}cm ".format(distance), end = ' ')
         check = sum(dis_vec)
         if sum(dis_vec)==5 and distance <99:
         	print("Change status to occupied")
 
         if sum(dis_vec)==1 and distance>99:
-        	print("Change status to occupied")
+        	print("Change status to unoccupied")
 
         if distance <99 :
             dis_vec.append(True)
