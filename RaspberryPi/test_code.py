@@ -15,6 +15,18 @@ if __name__ =="__main__":
         sleep(2)
         distance = round((sensor.distance*100),2)
         print ("Distance: {}cm ".format(distance), end = ' ')
+        
+
+        if distance <95 :
+            dist_vec.append(True)
+        else:
+            dist_vec.append(False)
+
+#        dis_vec.append(distance)
+        dis_vec.pop(0)
+        '''if diff < 10 and distance<95:
+            status = True
+            status_change()'''
         check = sum(dis_vec)
         if (check == 6) or (check == 0):
             status_change()
@@ -25,13 +37,8 @@ if __name__ =="__main__":
         """if(distance<60):
             occupied()
         else: unoccupied()"""
-        """dis_vec.append(distance)
-        dis_vec.pop(0)
-        dis_vec.sort()
-        diff=dis_vec[-1]-dis_vec[0]
-        if diff < 10 and distance<95:
-            status = True
-            status_change()"""
+        
+        
 
 
 
