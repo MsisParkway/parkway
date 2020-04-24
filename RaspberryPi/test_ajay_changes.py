@@ -20,7 +20,12 @@ if __name__ =="__main__":
         sleep(2)
         distance = round((sensor.distance*100),2)
         #print ("Distance: {}cm ".format(distance), end = ' ')
-        
+        check = sum(dis_vec)
+        if sum(dis_vec)==5 and distance <99:
+        	print("Change status to occupied")
+
+        if sum(dis_vec)==1 and distance>99:
+        	print("Change status to occupied")
 
         if distance <99 :
             dis_vec.append(True)
@@ -32,9 +37,9 @@ if __name__ =="__main__":
         '''if diff < 10 and distance<95:
             status = True
             status_change()'''
-        check = sum(dis_vec)
-        if (check == 6) or (check == 0):
-            status_change(check)
+        
+        """if (check == 6) or (check == 0):
+            status_change(check)"""
 
 
 
