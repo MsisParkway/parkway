@@ -2,19 +2,24 @@ from gpiozero import DistanceSensor as distsense
 from time import sleep
 
 
-def status_change():
-    print("Status changed")
+def status_change(status):
+    if status==6:
+        print("Status changed to occupied")
+    elif status==0:
+        print("Status changed to unoccupied")
+    else:
+        print("ERROR")
 
 
 if __name__ =="__main__":
     sensor = distsense(trigger = 18, echo = 24)
     dis_vec = [False, False, False, False, False, False]
-    status = 0 #True means occupied 
+    #status = 0 #True means occupied 
 
     while True:
         sleep(2)
         distance = round((sensor.distance*100),2)
-        print ("Distance: {}cm ".format(distance), end = ' ')
+        #print ("Distance: {}cm ".format(distance), end = ' ')
         
 
         if distance <95 :
@@ -29,7 +34,7 @@ if __name__ =="__main__":
             status_change()'''
         check = sum(dis_vec)
         if (check == 6) or (check == 0):
-            status_change()
+            status_change(check)
 
 
 
