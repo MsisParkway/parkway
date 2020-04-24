@@ -20,7 +20,7 @@ if __name__ =="__main__":
         if distance <95 :
             dis_vec.append(True)
         else:
-            dist_vec.append(False)
+            dis_vec.append(False)
 
 #        dis_vec.append(distance)
         dis_vec.pop(0)
