@@ -13,7 +13,7 @@ def status_change(status):
 
 if __name__ =="__main__":
     sensor = distsense(trigger = 18, echo = 24)
-    dis_vec = []
+    dis_vec = [False]*6 
     #status = 0 #True means occupied 
 
     while True:
