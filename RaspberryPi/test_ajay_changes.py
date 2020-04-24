@@ -1,7 +1,7 @@
 from gpiozero import DistanceSensor as distsense
 from time import sleep
 
-
+'''
 def status_change(status):
     if status==6:
         print("Status changed to occupied")
@@ -9,20 +9,22 @@ def status_change(status):
         print("Status changed to unoccupied")
     else:
         print("ERROR")
-
+'''
 
 if __name__ =="__main__":
     sensor = distsense(trigger = 18, echo = 24)
     dis_vec = [False]*6 
-    #status = 0 #True means occupied 
+
+    #init database connection
 
     while True:
         sleep(2)
         distance = round((sensor.distance*100),2)
-        print ("Distance: {}cm ".format(distance), end = ' ')
+        #print ("Distance: {}cm ".format(distance), end = ' ') #check why this is printing together
+        
         check = sum(dis_vec)
         if sum(dis_vec)==5 and distance <99:
-        	print("Change status to occupied")
+        	print("Change status to occupied") #run update into query
 
         if sum(dis_vec)==1 and distance>99:
         	print("Change status to unoccupied")
@@ -32,22 +34,7 @@ if __name__ =="__main__":
         else:
             dis_vec.append(False)
 
-#        dis_vec.append(distance)
-        dis_vec.pop(0)
-        '''if diff < 10 and distance<95:
-            status = True
-            status_change()'''
-        
-        """if (check == 6) or (check == 0):
-            status_change(check)"""
-
-
-
-
-        """if(distance<60):
-            occupied()
-        else: unoccupied()"""
-        
+        dis_vec.pop(0)        
         
 
 
