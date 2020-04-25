@@ -1,21 +1,22 @@
 from gpiozero import DistanceSensor as distsense
 from time import sleep
-
-'''
-def status_change(status):
-    if status==6:
-        print("Status changed to occupied")
-    elif status==0:
-        print("Status changed to unoccupied")
-    else:
-        print("ERROR")
-'''
+import mysql.connector #install mysql package on raspberry pi
 
 if __name__ =="__main__":
     sensor = distsense(trigger = 18, echo = 24)
     dis_vec = [False]*6 
 
-    #init database connection
+#MySQL initialization
+
+    mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="admin123",
+    database="test_newdb"
+    )
+    mycursor = mydb.cursor()
+
+#Continuous Loop for input
 
     while True:
         sleep(2)
@@ -23,13 +24,17 @@ if __name__ =="__main__":
         #print ("Distance: {}cm ".format(distance), end = ' ') #check why this is printing together
         
         check = sum(dis_vec)
-        if sum(dis_vec)==5 and distance <99:
+        if sum(dis_vec)==5 and distance <100:
         	print("Change status to occupied") #run update into query
+            #mycursor.execute("INSERT INTO new_table (id, mobile) VALUES ('12',84735);")
+            #mydb.commit()
 
-        if sum(dis_vec)==1 and distance>99:
+        if sum(dis_vec)==1 and distance>100:
         	print("Change status to unoccupied")
+            #mycursor.execute("INSERT INTO new_table (id, mobile) VALUES ('12',84735);")
+            #mydb.commit()
 
-        if distance <99 :
+        if distance <100 :
             dis_vec.append(True)
         else:
             dis_vec.append(False)
