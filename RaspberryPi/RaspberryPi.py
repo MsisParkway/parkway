@@ -21,7 +21,7 @@ if __name__ =="__main__":
     while True:
         sleep(2)
         distance = round((sensor.distance*100),2)
-        #print ("Distance: {}cm ".format(distance), end = ' ') #check why this is printing together
+        print ("Distance: {}cm ".format(distance), end = ' ') #check why this is printing together
         
         # check = sum(dis_vec)
         if sum(dis_vec)==5 and distance <100:
