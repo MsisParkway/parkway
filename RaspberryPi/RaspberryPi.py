@@ -25,13 +25,13 @@ if __name__ =="__main__":
         
         # check = sum(dis_vec)
         if sum(dis_vec)==5 and distance <99:
-        	print("Change status to occupied")
-            mycursor.execute("INSERT INTO test456 (status) VALUES (1);")
+            print("Change status to occupied")
+            mycursor.execute("INSERT INTO test456 (status) VALUES (1)")
             mydb.commit()
 
         if sum(dis_vec)==1 and distance>=99:
-        	print("Change status to unoccupied")
-            mycursor.execute("INSERT INTO test456 (status) VALUES (0);")
+            print("Change status to unoccupied")
+            mycursor.execute("INSERT INTO test456 (status) VALUES (0)")
             mydb.commit()
 
         if distance <100 :
