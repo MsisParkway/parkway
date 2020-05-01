@@ -1,4 +1,4 @@
-from time import sleep
+#from time import sleep
 import mysql.connector #install mysql package on raspberry pi
 
 if __name__ =="__main__":
@@ -18,22 +18,23 @@ if __name__ =="__main__":
 #Continuous Loop for input
 
     while True:
-        sleep(2)
+        #sleep(2)
         # distance = round((sensor.distance*100),2)
         #print ("Distance: {}cm ".format(distance), end = ' ') #check why this is printing together
         distance = float(input("enter distance: "))
         check = sum(dis_vec)
         if sum(dis_vec)==5 and distance <100:
             print("Change status to occupied") #run update into query
-            mycursor.execute("INSERT INTO test456 (status) VALUES (0)")
+            mycursor.execute("INSERT INTO test456 (status) VALUES (1)")
             mydb.commit()
 
-        if sum(dis_vec)==1 and distance>100:
-            sql= "Insert INTO test456 (status) values (%s)"
-            val=(1)
-            mycursor.execute(sql,val)
-            mydb.connection.commit()
+        if sum(dis_vec)==1 and distance>=100:
             print("Change status to unoccupied")
+            mycursor.execute("INSERT INTO test456 (status) VALUES (0)")
+            # sql= "Insert INTO test456 (status) values (%s)"
+            # val=(1)
+            # mycursor.execute(sql,val)
+            mydb.commit()
 
         if distance <100 :
             dis_vec.append(True)
