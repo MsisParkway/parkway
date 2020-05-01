@@ -9,10 +9,10 @@ if __name__ =="__main__":
 #MySQL initialization
 
     mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
+    host="testdb.cooervgj57jr.us-west-1.rds.amazonaws.com",
+    user="admin",
     passwd="admin123",
-    database="test_newdb"
+    database="test123"
     )
     mycursor = mydb.cursor()
 
@@ -23,16 +23,16 @@ if __name__ =="__main__":
         distance = round((sensor.distance*100),2)
         #print ("Distance: {}cm ".format(distance), end = ' ') #check why this is printing together
         
-        check = sum(dis_vec)
-        if sum(dis_vec)==5 and distance <100:
+        # check = sum(dis_vec)
+        if sum(dis_vec)==5 and distance <99:
         	print("Change status to occupied") #run update into query
-            #mycursor.execute("INSERT INTO new_table (id, mobile) VALUES ('12',84735);")
-            #mydb.commit()
+            mycursor.execute("INSERT INTO test456 (status) VALUES (1);")
+            mydb.commit()
 
-        if sum(dis_vec)==1 and distance>100:
+        if sum(dis_vec)==1 and distance>=99:
         	print("Change status to unoccupied")
-            #mycursor.execute("INSERT INTO new_table (id, mobile) VALUES ('12',84735);")
-            #mydb.commit()
+            mycursor.execute("INSERT INTO test456 (status) VALUES (0);")
+            mydb.commit()
 
         if distance <100 :
             dis_vec.append(True)
