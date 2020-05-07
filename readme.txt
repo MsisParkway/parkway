@@ -1,4 +1,4 @@
-## PARKWAY
+#PARKWAY
 
 Capstone Design Project
 Faculty Advisor: Prof. Vasu Kadambi
