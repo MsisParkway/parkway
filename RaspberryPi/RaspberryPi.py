@@ -1,3 +1,5 @@
+# Sensor for SdID '3'
+
 from gpiozero import DistanceSensor as distsense
 from time import sleep
 import mysql.connector #install mysql package on raspberry pi
@@ -9,10 +11,10 @@ if __name__ =="__main__":
 #MySQL initialization
 
     mydb = mysql.connector.connect(
-    host="testdb.cooervgj57jr.us-west-1.rds.amazonaws.com",
+    host="INSERT_AWS_ENDPOINT",
     user="admin",
     passwd="admin123",
-    database="test123"
+    database="parkwaydatabase"
     )
     mycursor = mydb.cursor()
 
@@ -26,13 +28,13 @@ if __name__ =="__main__":
         # check = sum(dis_vec)
         if sum(dis_vec)==5 and distance <90:
             print("Change status to occupied")
-            mycursor.execute("INSERT INTO test456 (status) VALUES (1)")
+            mycursor.execute("INSERT INTO spot_description (spot_status) VALUES (1) where SdID = 3")
             print(dis_vec)
             mydb.commit()
 
         if sum(dis_vec)==1 and distance>=90:
             print("Change status to unoccupied")
-            mycursor.execute("INSERT INTO test456 (status) VALUES (0)")
+            mycursor.execute("INSERT INTO spot_description (spot_status) VALUES (0) where SdID = 3")
             print(dis_vec)
             mydb.commit()
 
