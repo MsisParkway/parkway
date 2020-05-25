@@ -14,14 +14,14 @@ if __name__ =="__main__":
 #____________________________________________________________________________________________ HIDE
 #Twilio Initialization
 
-account_sid = 'AC366a7dce13a2f2f0f18fc6727ba88ace'
-auth_token = '11859683d54aecd2c23101a782468e17'
+account_sid = 'TEST'
+auth_token = 'TEST'
 client = Client(account_sid, auth_token)
 
 
 #MySQL Initialization
     mydb = mysql.connector.connect(
-    host="parkwaydb.cvwsvf6gxkqf.us-east-2.rds.amazonaws.com",
+    host="TEST_ENDPOINT",
     user="admin",
     passwd="admin123",
     database="parkwaydatabase"
