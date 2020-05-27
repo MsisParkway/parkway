@@ -60,7 +60,7 @@ client = Client(account_sid, auth_token)
                         "FROM reservation r" 
                         "JOIN spot_description s on s.sdid=r.sdid"
                         "JOIN user u on u.userid = r.guserid "
-                        "WHERE timediff(now(),r.reservationenddatetime) BETWEEN '07:05:00' AND '07:07:00' AND s.spot_status=1;")
+                        "WHERE timediff(now(),r.reservationenddatetime) BETWEEN '07:05:00' AND '07:07:00' AND s.spot_status=1 AND sdid=3;")
         data.append(mycursor.fetchall())
         mydb.commit()
 
