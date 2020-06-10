@@ -20,7 +20,7 @@ if __name__ =="__main__":
 
 
 #MySQL Initialization
-    mydb = mysql.connector.connect(
+	mydb = mysql.connector.connect(
     host="parkwaydb.cvwsvf6gxkqf.us-east-2.rds.amazonaws.com",
     user="admin",
     passwd="admin123",
