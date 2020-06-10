@@ -14,13 +14,13 @@ if __name__ =="__main__":
 #____________________________________________________________________________________________ HIDE
 #Twilio Initialization
 
-	account_sid = 'AC366a7dce13a2f2f0f18fc6727ba88ace'
-	auth_token = 'bc8e109e23d25deb7e32dc6c2a2187e0'
-	client = Client(account_sid, auth_token)
+    account_sid = 'AC366a7dce13a2f2f0f18fc6727ba88ace'
+    auth_token = 'bc8e109e23d25deb7e32dc6c2a2187e0'
+    client = Client(account_sid, auth_token)
 
 
 #MySQL Initialization
-	mydb = mysql.connector.connect(
+    mydb = mysql.connector.connect(
     host="parkwaydb.cvwsvf6gxkqf.us-east-2.rds.amazonaws.com",
     user="admin",
     passwd="admin123",
