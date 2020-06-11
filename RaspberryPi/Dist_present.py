@@ -12,8 +12,8 @@ if __name__ =="__main__":
 #____________________________________________________________________________________________ HIDE
 
 #MySQL Initialization
-	
-	mydb = mysql.connector.connect(
+    
+    mydb = mysql.connector.connect(
     host="parkwaydb.cvwsvf6gxkqf.us-east-2.rds.amazonaws.com",
     user="admin",
     passwd="admin123",
@@ -25,19 +25,19 @@ if __name__ =="__main__":
 
 #Continuous Loop
     while True:
-        sleep(3)
+        sleep(2)
         distance = round((sensor.distance*100),2)
-        print (distance)
+        print ("Car Parked Distance: ",distance)
         
         if sum(dis_vec)==5 and distance <90:
             print("Change status to occupied")
-            mycursor.execute("INSERT INTO spot_description (spot_status) VALUES (1) where SdID = 3")
+            mycursor.execute("update spot_description set spot_status=1 where sdid=3")
             print(dis_vec)
             mydb.commit()
 
         if sum(dis_vec)==1 and distance>=90:
             print("Change status to unoccupied")
-            mycursor.execute("INSERT INTO spot_description (spot_status) VALUES (0) where SdID = 3")
+            mycursor.execute("update spot_description set spot_status=0 where sdid=3")
             print(dis_vec)
             mydb.commit()
 
