@@ -14,9 +14,9 @@ if __name__ =="__main__":
 #____________________________________________________________________________________________ HIDE
 #Twilio Initialization
 
-account_sid = 'AC366a7dce13a2f2f0f18fc6727ba88ace'
-auth_token = 'bc8e109e23d25deb7e32dc6c2a2187e0'
-client = Client(account_sid, auth_token)
+    account_sid = 'AC115239e70f791cf8147ea00a3c0404f1'
+    auth_token = '012261aaacef9d2c97b953c25362a739'
+    client = Client(account_sid, auth_token)
 
 
 #MySQL Initialization
@@ -32,18 +32,18 @@ client = Client(account_sid, auth_token)
 
 #Continuous Loop
     while True:
-        sleep(3)
+        sleep(2)
         distance = round((sensor.distance*100),2)
         
         if sum(dis_vec)==5 and distance <90:
             print("Change status to occupied")
-            mycursor.execute("INSERT INTO spot_description (spot_status) VALUES (1) where SdID = 3")
+            mycursor.execute("update spot_description set spot_status=1 where sdid=3")
             print(dis_vec)
             mydb.commit()
 
         if sum(dis_vec)==1 and distance>=90:
             print("Change status to unoccupied")
-            mycursor.execute("INSERT INTO spot_description (spot_status) VALUES (0) where SdID = 3")
+            mycursor.execute("update spot_description set spot_status=0 where sdid=3")
             print(dis_vec)
             mydb.commit()
 
@@ -56,25 +56,21 @@ client = Client(account_sid, auth_token)
 
         #check if car is still at the parking space
         data = []
-        mycursor.execute("SELECT u.mobile" 
-                        "FROM reservation r" 
-                        "JOIN spot_description s on s.sdid=r.sdid"
-                        "JOIN user u on u.userid = r.guserid "
-                        "WHERE timediff(now(),r.reservationenddatetime) BETWEEN '07:05:00' AND '07:07:00' AND s.spot_status=1 AND sdid=3;")
+        mycursor.execute("SELECT u.mobile FROM reservation r JOIN spot_description s on s.sdid=r.sdid JOIN user u on u.userid = r.guserid WHERE timediff(now(),r.reservationenddatetime) BETWEEN '07:05:00' AND '07:07:00' AND s.spot_status=1 AND s.sdid=3")
         data.append(mycursor.fetchall())
         mydb.commit()
 
         if not data[0]:
-        call = client.calls.create(
+            call = client.calls.create(
             url='http://demo.twilio.com/docs/voice.xml',
-            to='+14086462243',
-            from_='+12058581270'
+            to='+16692369058',
+            from_='+12056969542'
             )
 
-        message = client.messages.create(
+            message = client.messages.create(
             body='IMPORTANT REMINDER!\nYour reservation time is Up. Please remove your car.',
-            from_='+12058581270',
-            to='+14086462243'
+            from_='+12056969542',
+            to='+16692369058'
             )
 
 
